@@ -2,7 +2,7 @@ import { After, AfterAll, BeforeAll, Given, When, Then } from 'cucumber'
 import * as request from 'supertest';
 import { assert } from 'chai';
 import { Test } from '@nestjs/testing';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import { MongoMemoryServer } from 'mongodb-memory-server-core';
 import { AppModule } from '../../../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { UsersService } from '../../../src/users/users.service';
