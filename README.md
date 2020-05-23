@@ -5,7 +5,7 @@
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter template repository.
 
 ![Node.js CI](https://github.com/rogargon/nestjs-template/workflows/Node.js%20CI/badge.svg)
-
+[![codecov](https://codecov.io/gh/rogargon/nestjs-template/branch/master/graph/badge.svg)](https://codecov.io/gh/rogargon/nestjs-template)
 
 ## Description
 
@@ -19,6 +19,7 @@
 * Memory MongoDB for testing
 * Cucumber e2e tests
 * Seeder for default admin user
+* ...
 
 ## Installation
 
@@ -49,12 +50,8 @@ $ npm run test
 $ npm run test:e2e
 
 # test coverage
-$ npm run test:cov
+$ npm run test:e2e:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## License
 
