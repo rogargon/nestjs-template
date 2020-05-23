@@ -8,7 +8,7 @@ import bcrypt = require("bcrypt");
 @Injectable()
 export class UsersService {
 
-    constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+    constructor(@InjectModel('User') private readonly userModel: Model<User> | any) {}
 
     async create(user: User): Promise<User> {
         if (await this.exists(user.username))

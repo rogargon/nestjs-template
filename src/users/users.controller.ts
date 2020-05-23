@@ -39,6 +39,7 @@ export class UsersController {
 
     @Delete(':id')
     @HttpCode(204)
+    @UseGuards(RolesGuard) // Does nothing if @Roles not defined, just to check it is ignored
     @UseGuards(AuthGuard('jwt'))
     remove(@ReqUser() auth: User, @Param('id') id: string) {
         return this.usersService.deleteOne(auth, id);
