@@ -19,7 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:jest-e2e": "jest --config ./test/jest-e2e.json",
     "test:e2e": "cucumber-js -p default",
-    "test:e2e:cov": "nyc npm run test:e2e"
+    "test:e2e:cov": "nyc --reporter=lcov npm run test:e2e"
   },
   "dependencies": {
     "@nestjs/common": "^6.11.11",
