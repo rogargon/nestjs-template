@@ -8,4 +8,10 @@ export const UserSchema = new mongoose.Schema({
     password: String,
     roles: [String],
     created: { type: Date, default: Date.now }
+},{
+    toJSON: {
+        transform: function (doc, ret) {
+            delete ret.password;
+        }
+    }
 });
