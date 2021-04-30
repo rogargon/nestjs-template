@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from './users/users.service';
-import { User } from './users/user';
+import { UserDto } from './users/user';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class Seeder {
 
     async seed() {
         if (!await this.userService.exists('admin')) {
-            const admin = new User({ username: 'admin', fullname: 'Administrator', email: 'admin@nest.js',
+            const admin = new UserDto({ username: 'admin', fullname: 'Administrator', email: 'admin@nest.js',
                 password: this.configService.get('DEFAULT_PASSWORD', 'password'),
                 organization: 'NestJS', roles: ['admin'] });
             await this.userService.create(admin);

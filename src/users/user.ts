@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
-export class User {
+export class UserDto {
     @IsNotEmpty()
     username: string;
     @IsEmail()
@@ -13,6 +13,6 @@ export class User {
     created: Date;
 
     constructor(values: object = {}) {
-        Object.assign(this as User, values);
+        Object.assign(this as UserDto, values);
     }
 }

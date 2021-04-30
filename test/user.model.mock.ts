@@ -7,8 +7,12 @@ export const userJson2 = {
 
 export const userModelMock = {
     save: jest.fn().mockResolvedValue(userJson1),
-    find: jest.fn().mockResolvedValue([userJson1, userJson2]),
-    findOne: jest.fn().mockResolvedValue(userJson1),
-    findOneAndUpdate: jest.fn().mockResolvedValue(userJson1),
-    deleteOne: jest.fn().mockResolvedValue(true),
+    find: jest.fn().mockImplementation( () => { return {
+        exec: jest.fn().mockResolvedValue([userJson1, userJson2]) } }),
+    findOne: jest.fn().mockImplementation( () => { return {
+        exec: jest.fn().mockResolvedValue(userJson1) } }),
+    findOneAndUpdate: jest.fn().mockImplementation( () => { return {
+        exec: jest.fn().mockResolvedValue(userJson1) } }),
+    findOneAndDelete: jest.fn().mockImplementation( () => { return {
+        exec: jest.fn().mockResolvedValue(userJson1) } })
 };

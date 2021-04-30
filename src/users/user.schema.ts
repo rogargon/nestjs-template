@@ -1,17 +1,20 @@
-import * as mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-export const UserSchema = new mongoose.Schema({
-    username: String,
-    fullname: String,
-    organization: String,
-    email: String,
-    password: String,
-    roles: [String],
-    created: { type: Date, default: Date.now }
-},{
-    toJSON: {
+export type UserDocument = User & Document;
+
+@Schema({ toJSON: {
         transform: function (doc, ret) {
             delete ret.password;
-        }
-    }
-});
+        } } })
+export class User {
+    @Prop() username: string;
+    @Prop() fullname: string;
+    @Prop() organization: string;
+    @Prop() email: string;
+    @Prop() password: string;
+    @Prop([String]) roles: string[];
+    @Prop({ default: Date.now }) created: Date;
+}
+
+export const UserSchema = SchemaFactory.createForClass(User);

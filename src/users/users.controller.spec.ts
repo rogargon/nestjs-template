@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
-import { User } from './user';
+import { UserDto } from './user';
 import { getModelToken } from '@nestjs/mongoose';
 import { userJson1, userJson2 } from '../../test/user.model.mock';
 
@@ -9,8 +9,8 @@ describe('UsersController', () => {
     let usersController: UsersController;
     let usersService: UsersService;
 
-    const demoUser = new User(userJson1);
-    const demoUser2 = new User(userJson2);
+    const demoUser = new UserDto(userJson1);
+    const demoUser2 = new UserDto(userJson2);
 
     beforeEach(async () => {
         const moduleRef = await Test.createTestingModule({

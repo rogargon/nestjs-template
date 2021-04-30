@@ -1,16 +1,17 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { User } from "./user";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from 'mongoose';
 import { DuplicateIdentifierException } from '../utils/duplicate-identifier.exception';
 import bcrypt = require("bcrypt");
+import { User, UserDocument } from './user.schema';
+import { UserDto } from './user';
 
 @Injectable()
 export class UsersService {
 
-    constructor(@InjectModel('User') private readonly userModel: Model<User> | any) {}
+    constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-    async create(user: User): Promise<User> {
+    async create(user: UserDto): Promise<User> {
         if (await this.exists(user.username))
             throw new DuplicateIdentifierException(`${user.username}`);
         user.password = await bcrypt.hash(user.password, 10);
@@ -23,11 +24,11 @@ export class UsersService {
     }
 
     findAll(): Promise<User[]> {
-        return this.userModel.find();
+        return this.userModel.find().exec();
     }
 
     findOne(id: string): Promise<User> {
-        return this.userModel.findOne({username: id});
+        return this.userModel.findOne({username: id}).exec();
     }
 
     updateOne(auth: User, id: string, newUser: User): Promise<User> {
@@ -37,7 +38,7 @@ export class UsersService {
                 throw new ForbiddenException(`Unauthorized to update username ${id}`);
             delete newUser.roles;
         }
-        return this.userModel.findOneAndUpdate({ username: id }, newUser, { new: true });
+        return this.userModel.findOneAndUpdate({ username: id }, newUser, { new: true }).exec();
     }
 
     deleteOne(auth: User, id: string): Promise<User> {
@@ -45,7 +46,7 @@ export class UsersService {
             if (id !== auth.username)
                 throw new ForbiddenException(`Unauthorized to delete username ${id}`);
         }
-        return this.userModel.findOneAndDelete({ username: id });
+        return this.userModel.findOneAndDelete({ username: id }).exec();
     }
 
     deleteAll() {

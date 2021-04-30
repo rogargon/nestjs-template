@@ -5,7 +5,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server-core';
 import { AppModule } from '../../../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { UsersService } from '../../../src/users/users.service';
-import { User } from '../../../src/users/user';
+import { UserDto } from '../../../src/users/user';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const expect = require('expect');
 
@@ -39,7 +39,7 @@ AfterAll(async() => {
 Given(/^There is a user$/, async(table) => {
     const user = table.hashes()[0];
     user.roles = user.roles && user.roles.split(',').map(role => role.trim());
-    await usersService.create(new User(user));
+    await usersService.create(new UserDto(user));
 });
 
 Given(/^I login as "([^"]*)" with password "([^"]*)"$/, async(username, password) => {
