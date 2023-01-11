@@ -31,7 +31,7 @@
     "@nestjs/platform-express": "^7.6.15",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
-    "class-validator": "^0.13.1",
+    "class-validator": "^0.14.0",
     "helmet": "^4.5.0",
     "mongoose": "^5.12.7",
     "passport": "^0.4.1",
